@@ -11,9 +11,13 @@ ln -fs /vagrant/www /var/www
 # a single apt-get command. This avoids having to do all the leg work
 # each time a package is set to install. It also allows us to easily comment
 # out or add single packages.
+
 # ensure the latest nodejs build is used
-#sudo add-apt-repository ppa:chris-lea/node.js 
-#sudo apt-get update
+sudo apt-get update
+sudo apt-get install python-software-properties python g++ make --force-yes -y
+sudo add-apt-repository ppa:chris-lea/node.js 
+sudo apt-get update
+
 apt_package_list=(
 	# Imagemagick
 	# imagemagick
@@ -55,12 +59,11 @@ apt_package_list=(
 	unzip
 	ngrep
 	curl
-	make
+	#make
 	vim
 
 	#node
-	#nodejs
-	#npm
+	nodejs
 
 	# memcached
 	memcached
@@ -74,7 +77,4 @@ printf "Install all apt-get packages...\n"
 apt-get install --force-yes -y ${apt_package_list[@]}
 
 # Clean up apt caches
-#apt-get clean
-
-#npm install grunt -g
-#npm install grunt-cli -g
+apt-get clean
